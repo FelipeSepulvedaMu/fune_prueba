@@ -11,7 +11,7 @@ export default function Trayectoria() {
           loop 
           muted 
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover scale-105 bg-white"
         >
           Tu navegador no soporta el elemento de video.
         </video>
