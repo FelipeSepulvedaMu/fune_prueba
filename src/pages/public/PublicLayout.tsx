@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
-import { ShoppingCart, Phone } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 
 export default function PublicLayout() {
   const { items } = useCart();
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-stone-50 font-sans text-stone-900 flex flex-col">
@@ -14,7 +19,7 @@ export default function PublicLayout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14">
             {/* Logo */}
-            <Link to="/" className="flex items-center flex-shrink-0">
+            <Link to="/" className="flex items-center flex-shrink-0" onClick={closeMobileMenu}>
               <img 
                 src="/logo-alt.png" 
                 alt="Funeraria Castillo" 
@@ -40,7 +45,7 @@ export default function PublicLayout() {
               </div>
             </Link>
 
-            {/* Navigation */}
+            {/* Default Desktop Navigation */}
             <nav className="hidden lg:flex items-center h-full">
               <Link to="/trayectoria" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Trayectoria</Link>
               <div className="h-4 w-px bg-white/40"></div>
@@ -53,9 +58,9 @@ export default function PublicLayout() {
               <Link to="/contacto" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Contacto</Link>
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center space-x-4 flex-shrink-0">
-              <Link to="/carrito" className="relative p-2 text-white hover:text-stone-200 transition-colors">
+            {/* Actions (Cart & Mobile Menu Toggle) */}
+            <div className="flex items-center space-x-2 flex-shrink-0">
+              <Link to="/carrito" onClick={closeMobileMenu} className="relative p-2 text-white hover:text-stone-200 transition-colors">
                 <ShoppingCart className="w-5 h-5" />
                 {itemCount > 0 && (
                   <span className="absolute top-0 right-0 bg-white text-[#009944] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1">
@@ -63,9 +68,31 @@ export default function PublicLayout() {
                   </span>
                 )}
               </Link>
+
+              {/* Hamburger Button (Mobile Only) */}
+              <button 
+                className="lg:hidden p-2 text-white hover:text-stone-200 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden absolute top-14 left-0 w-full bg-[#007a36]/95 backdrop-blur-md shadow-lg border-t border-white/10 animate-in slide-in-from-top-2 duration-200">
+            <nav className="flex flex-col py-4 px-4 space-y-4">
+              <Link to="/trayectoria" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Trayectoria</Link>
+              <Link to="/" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Nuestros Servicios</Link>
+              <Link to="/cremacion" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Cremación</Link>
+              <Link to="/sepulturas" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Venta de Sepulturas</Link>
+              <Link to="/contacto" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Contacto</Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Main Content */}
@@ -124,7 +151,7 @@ export default function PublicLayout() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span className="text-xl md:text-2xl font-bold tracking-wide">+569 9999 9999</span>
+                <span className="text-xl md:text-2xl font-bold tracking-wide">+569 9838 0772</span>
               </div>
 
               {/* Social Icons */}
@@ -175,7 +202,7 @@ export default function PublicLayout() {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/56988812007?text=Hola%2C%20me%20comunico%20con%20Funeraria%20Castillo%20porque%20necesito%20informaci%C3%B3n%20sobre%20sus%20servicios%20funerarios.%20Agradecer%C3%ADa%20si%20pudieran%20orientarme%20sobre%20disponibilidad%2C%20valores%20y%20el%20proceso%20a%20seguir.%20El%20servicio%20ser%C3%ADa%20en%20%5Bcomuna%2Fciudad%5D%20y%20para%20%5Bfecha%20aproximada%5D.%20Quedo%20atento%2Fa%2C%20muchas%20gracias."
+        href="https://wa.me/56998380772?text=Necesito%20contratar%20un%20servicio%20funerario%20"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#20ba56] hover:scale-110 transition-all duration-300 flex items-center justify-center group"
