@@ -4,7 +4,7 @@ export default function Trayectoria() {
   return (
     <div className="w-full bg-white">
       {/* Video Banner (Full Width) */}
-      <div className="w-full h-[400px] md:h-[500px] bg-stone-900 relative flex items-center justify-center overflow-hidden">
+      <div className="w-full h-[400px] md:h-[500px] bg-white relative flex items-center justify-center overflow-hidden">
         <video 
           src="/video-trayectoria.mp4" 
           autoPlay 
