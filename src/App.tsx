@@ -28,7 +28,8 @@ export default function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<PublicLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Trayectoria />} />
+            <Route path="servicios" element={<Home />} />
             <Route path="carrito" element={<Cart />} />
             <Route path="trayectoria" element={<Trayectoria />} />
             <Route path="cremacion" element={<Cremacion />} />
