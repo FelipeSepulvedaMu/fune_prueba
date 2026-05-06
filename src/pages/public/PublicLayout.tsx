@@ -18,32 +18,43 @@ export default function PublicLayout() {
       <header className="bg-gradient-to-r from-[#007a36] via-[#009944] to-[#007a36] shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14">
-            {/* Logo */}
-            <Link to="/" className="flex items-center flex-shrink-0" onClick={closeMobileMenu}>
-              <img 
-                src="/logo-alt.png" 
-                alt="Funeraria Castillo" 
-                className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  // Fallback visual en caso de que la imagen aún no esté subida
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                }}
-              />
-              {/* Fallback temporal mientras se sube la imagen */}
-              <div className="hidden flex items-center space-x-2">
-                <div className="w-8 h-8 flex items-center justify-center">
-                  <svg viewBox="0 0 100 100" className="w-full h-full fill-current text-white">
-                    <path d="M50 10 L55 25 L70 25 L60 35 L65 50 L50 40 L35 50 L40 35 L30 25 L45 25 Z" />
-                    <rect x="35" y="45" width="30" height="45" />
-                    <path d="M40 90 L40 70 L60 70 L60 90 Z" fill="#007a36" />
-                    <rect x="47" y="5" width="6" height="15" />
-                    <rect x="42" y="10" width="16" height="6" />
-                  </svg>
+            <div className="flex items-center">
+              {/* Hamburger Button (Mobile Only) */}
+              <button 
+                className="lg:hidden p-2 text-white hover:text-stone-200 transition-colors mr-2 -ml-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+
+              {/* Logo */}
+              <Link to="/" className="flex items-center flex-shrink-0" onClick={closeMobileMenu}>
+                <img 
+                  src="/logo-alt.png" 
+                  alt="Funeraria Castillo" 
+                  className="h-10 w-auto object-contain"
+                  onError={(e) => {
+                    // Fallback visual en caso de que la imagen aún no esté subida
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                {/* Fallback temporal mientras se sube la imagen */}
+                <div className="hidden flex items-center space-x-2">
+                  <div className="w-8 h-8 flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" className="w-full h-full fill-current text-white">
+                      <path d="M50 10 L55 25 L70 25 L60 35 L65 50 L50 40 L35 50 L40 35 L30 25 L45 25 Z" />
+                      <rect x="35" y="45" width="30" height="45" />
+                      <path d="M40 90 L40 70 L60 70 L60 90 Z" fill="#007a36" />
+                      <rect x="47" y="5" width="6" height="15" />
+                      <rect x="42" y="10" width="16" height="6" />
+                    </svg>
+                  </div>
+                  <h1 className="text-lg font-serif font-bold tracking-widest text-white uppercase">Castillo</h1>
                 </div>
-                <h1 className="text-lg font-serif font-bold tracking-widest text-white uppercase">Castillo</h1>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
             {/* Default Desktop Navigation */}
             <nav className="hidden lg:flex items-center h-full">
@@ -58,7 +69,7 @@ export default function PublicLayout() {
               <Link to="/contacto" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Contacto</Link>
             </nav>
 
-            {/* Actions (Cart & Mobile Menu Toggle) */}
+            {/* Actions (Cart) */}
             <div className="flex items-center space-x-2 flex-shrink-0">
               <Link to="/carrito" onClick={closeMobileMenu} className="relative p-2 text-white hover:text-stone-200 transition-colors">
                 <ShoppingCart className="w-5 h-5" />
@@ -68,15 +79,6 @@ export default function PublicLayout() {
                   </span>
                 )}
               </Link>
-
-              {/* Hamburger Button (Mobile Only) */}
-              <button 
-                className="lg:hidden p-2 text-white hover:text-stone-200 transition-colors"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
             </div>
           </div>
         </div>
