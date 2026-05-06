@@ -58,9 +58,9 @@ export default function PublicLayout() {
 
             {/* Default Desktop Navigation */}
             <nav className="hidden lg:flex items-center h-full">
-              <Link to="/trayectoria" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Trayectoria</Link>
+              <Link to="/" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Trayectoria</Link>
               <div className="h-4 w-px bg-white/40"></div>
-              <Link to="/" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Nuestros Servicios</Link>
+              <Link to="/servicios" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Nuestros Servicios</Link>
               <div className="h-4 w-px bg-white/40"></div>
               <Link to="/cremacion" className="px-4 text-[11px] font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Cremación</Link>
               <div className="h-4 w-px bg-white/40"></div>
@@ -87,8 +87,8 @@ export default function PublicLayout() {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-14 left-0 w-full bg-[#007a36]/95 backdrop-blur-md shadow-lg border-t border-white/10 animate-in slide-in-from-top-2 duration-200">
             <nav className="flex flex-col py-4 px-4 space-y-4">
-              <Link to="/trayectoria" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Trayectoria</Link>
-              <Link to="/" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Nuestros Servicios</Link>
+              <Link to="/" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Trayectoria</Link>
+              <Link to="/servicios" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Nuestros Servicios</Link>
               <Link to="/cremacion" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Cremación</Link>
               <Link to="/sepulturas" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest border-b border-white/10 pb-2">Venta de Sepulturas</Link>
               <Link to="/contacto" onClick={closeMobileMenu} className="block text-sm font-bold text-white hover:text-stone-200 transition-colors uppercase tracking-widest">Contacto</Link>
