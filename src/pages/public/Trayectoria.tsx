@@ -18,9 +18,6 @@ export default function Trayectoria() {
         
         {/* Capa oscura opcional para que el texto resalte más si decides poner texto encima */}
         <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
-
-        {/* Gradient Transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
       </div>
 
       {/* Main Content */}
