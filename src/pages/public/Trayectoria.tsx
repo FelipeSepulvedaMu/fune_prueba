@@ -15,9 +15,6 @@ export default function Trayectoria() {
         >
           Tu navegador no soporta el elemento de video.
         </video>
-        
-        {/* Capa oscura opcional para que el texto resalte más si decides poner texto encima */}
-        <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
       </div>
 
       {/* Main Content */}
